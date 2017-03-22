@@ -32,7 +32,7 @@ numbers[14] = { name = "4321" }
 local timeBegin
 local timeEnd
 
-local statusBarHeight = display.statusBarHeight
+local statusBarHeight = display.topStatusBarContentHeight
 
 --Widgets and plugins that are going to be used
 local widget = require("widget")
@@ -63,19 +63,16 @@ local function onRowTouch(e)
 	local function holdListener()
 		pasteboard.copy("string", e.row.params.title)
 		toast.show("Copied")
+		e.row = e.row.params.color
 	end
 	
 	if(e.phase == "press") then
 		timeBegin = system.getTimer()
-		display.getCurrentStage( ):setFocus( row )
-		row.hasFocus = true
 		holdTimer = timer.performWithDelay( 750, holdListener)
 	elseif(e.phase == "release") then
 		timeEnd = system.getTimer()
 		if(timeEnd - timeBegin < 750) then
 		timer.cancel( holdTimer )
-		display.getCurrentStage():setFocus(nil)
-		row.hasFocus = false
 		end
 	end
 	
@@ -85,7 +82,7 @@ end
 local tableView = widget.newTableView({
 	left = 0,
 	top = statusBarHeight,
-	height = _SCREEN.HEIGHT - statusBarHeight,
+	height = _SCREEN.HEIGHT,
 	width = _SCREEN.WIDTH,
 	onRowRender = onRowRender,
 	onRowTouch = onRowTouch,
@@ -94,6 +91,7 @@ local tableView = widget.newTableView({
 
 for i = 1, #numbers do
 	local number = numbers[i].name
+	local color = {50/255,50/255,50/255}
 	local params = {
 		rowHeight = 60,
 		rowColor = {
@@ -101,7 +99,8 @@ for i = 1, #numbers do
 			over = {25/255,25/255,25/255}
 		},
 		params = {
-			title = number
+			title = number,
+			color = color
 		}
 	}
 	tableView:insertRow(params)
