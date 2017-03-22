@@ -6,7 +6,7 @@ _SCREEN = {
 	WIDTH = display.contentWidth
 }
 
-_SCREEN.CENTER = {-
+_SCREEN.CENTER = {
 	x = display.contentCenterX,
 	y = display.contentCenterY
 }
@@ -60,7 +60,7 @@ local function onRowTouch(e)
 	
 	local row = e.target
 
-	local function holdListener()	
+	local function holdListener()
 		pasteboard.copy("string", e.row.params.title)
 		toast.show("Copied")
 	end
