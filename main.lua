@@ -14,20 +14,36 @@ _SCREEN.CENTER = {
 --Numbers table
 local numbers = {}
 
-numbers[1] = { name = "1" }
-numbers[2] = { name = "8888" }
-numbers[3] = { name = "1234" }
-numbers[4] = { name = "4321" }
-numbers[5] = { name = "1234" }
-numbers[6] = { name = "4321" }
-numbers[7] = { name = "1234" }
-numbers[8] = { name = "4321" }
-numbers[9] = { name = "1234" }
-numbers[10] = { name = "4321" }
-numbers[11] = { name = "1234" }
-numbers[12] = { name = "4321" }
-numbers[13] = { name = "1234" }
-numbers[14] = { name = "4321" }
+numbers[1] = { name = "123455" }
+numbers[2] = { name = "889823" }
+numbers[3] = { name = "123444" }
+numbers[4] = { name = "432133" }
+numbers[5] = { name = "123423" }
+numbers[6] = { name = "432112" }
+numbers[7] = { name = "123464" }
+numbers[8] = { name = "432175" }
+numbers[9] = { name = "123478" }
+numbers[10] = { name = "432134" }
+numbers[11] = { name = "123465" }
+numbers[12] = { name = "432177" }
+numbers[13] = { name = "123422" }
+numbers[14] = { name = "432115" }
+numbers[15] = { name = "432167" }
+numbers[16] = { name = "123487" }
+numbers[17] = { name = "432194" }
+numbers[18] = { name = "123434" }
+numbers[19] = { name = "432126" }
+numbers[20] = { name = "432167" }
+numbers[21] = { name = "123426" }
+numbers[22] = { name = "432173" }
+numbers[23] = { name = "123474" }
+numbers[24] = { name = "432174" }
+numbers[25] = { name = "432155" }
+numbers[26] = { name = "123412" }
+numbers[27] = { name = "432174" }
+numbers[28] = { name = "123426" }
+numbers[29] = { name = "432173" }
+numbers[30] = { name = "432175" }
 
 local a = math.random()
 print(a)
@@ -49,10 +65,11 @@ local function onRowRender(e)
 	local rowLabel = e.row.params.title
 	
 	row.rowText = display.newText(rowIndex .. ".", 0, 0, "Helvetica", 18)
-	row.rowText.anchorX = 0
-	row.rowText.x = 17
+	row.rowText.anchorX = 1
+	row.rowText.x = _SCREEN.CENTER.x - 50
 	row.rowText.y = row.height * 0.5 + 7
 	row.rowText.fill = {255, 255, 255}
+	row.rowText.alpha = 0.7
 
 	row.rowText2 = display.newText(rowLabel, 0, 0, "Helvetica", 26)
 	row.rowText2.anchorX = 0.5
