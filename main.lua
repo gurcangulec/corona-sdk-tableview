@@ -45,9 +45,6 @@ numbers[28] = { name = "123426" }
 numbers[29] = { name = "432173" }
 numbers[30] = { name = "432175" }
 
-local a = math.random()
-print(a)
-
 local timeBegin
 local timeEnd
 
