@@ -1,4 +1,4 @@
-display.setStatusBar(display.DefaultStatusBar)
+display.setStatusBar(display.TranslucentStatusBar)
 
 --Screen adjustment
 _SCREEN = {
@@ -14,7 +14,7 @@ _SCREEN.CENTER = {
 --Numbers table
 local numbers = {}
 
-numbers[1] = { name = "123455" }
+numbers[1] = { name = "12355" }
 numbers[2] = { name = "889823" }
 numbers[3] = { name = "123444" }
 numbers[4] = { name = "432133" }
@@ -45,10 +45,13 @@ numbers[28] = { name = "123426" }
 numbers[29] = { name = "432173" }
 numbers[30] = { name = "432175" }
 
+--Creating timer variables
 local timeBegin
 local timeEnd
 
 local statusBarHeight = display.topStatusBarContentHeight
+
+print(statusBarHeight)
 
 --Widgets and plugins that are going to be used
 local widget = require("widget")
@@ -61,26 +64,28 @@ local function onRowRender(e)
 	
 	local rowLabel = e.row.params.title
 	
-	row.rowText = display.newText(rowIndex .. ".", 0, 0, "Helvetica", 18)
+	row.rowText = display.newText(rowIndex .. ".", 0, 0, "Helvetica", 26)
 	row.rowText.anchorX = 1
-	row.rowText.x = _SCREEN.CENTER.x - 50
-	row.rowText.y = row.height * 0.5 + 7
+	row.rowText.x = - 40
+	row.rowText.y = row.height * 0.5
 	row.rowText.fill = {255, 255, 255}
-	row.rowText.alpha = 0.7
+	row.rowText.alpha = 0.38
 
 	row.rowText2 = display.newText(rowLabel, 0, 0, "Helvetica", 26)
 	row.rowText2.anchorX = 0.5
-	row.rowText2.anchorY = 0.4
-	row.rowText2.x = _SCREEN.CENTER.x
+	row.rowText2.x = 10
 	row.rowText2.y = row.height * 0.5
 	row.rowText2.fill = {255, 255, 255}
 	
-	row:insert(row.rowText)
-	row:insert(row.rowText2)
+	local group = display.newGroup()
+	group:insert(row.rowText)
+	group:insert(row.rowText2)
+	group.x = _SCREEN.CENTER.x
+
+	row:insert(group)
 end
 
-
-
+--Creating onRowTouch function
 local function onRowTouch(e)
 	
 	local row = e.target
@@ -114,6 +119,7 @@ local tableView = widget.newTableView({
 	hideBackground = true
 })
 
+--Creating rows according to the number of numbers
 for i = 1, #numbers do
 	local number = numbers[i].name
 	local color = {50/255,50/255,50/255}
@@ -131,4 +137,3 @@ for i = 1, #numbers do
 	}
 	tableView:insertRow(params)
 end
-
